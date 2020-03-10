@@ -366,7 +366,8 @@ class Table(Schema, Queryable, Renderable):
 
 				pprint(dir(col))
 				for aItem, aValue in aTable.items():
-					print(aItem,col.attr)
+					bItem = col.attr.split(".")
+					print(aItem,col.attr,bItem)
 					if aItem == col.attr:
 						pass
 
