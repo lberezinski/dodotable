@@ -351,10 +351,14 @@ class Table(Schema, Queryable, Renderable):
             # print ("ROW {}".format(vars(row)))
             t2 = row._sa_instance_state.class_.__table__
             pprint (vars(t2))
-            
+            print()
             
             for c2 in t2.columns:
-                pprint (vars(c2) )
+                # pprint (vars(c2) )
+                print (c2.key)
+                print (c2.nullable)
+                print (c2.primary_key)
+                print (c2.default)
            
             _row = Row()
             for j, col in enumerate(self.columns):
