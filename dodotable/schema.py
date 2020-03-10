@@ -365,7 +365,7 @@ class Table(Schema, Queryable, Renderable):
 			_row = Row()
 			for j, col in enumerate(self.columns):
 
-				for aItem in aTable.columns():
+				for aItem in aTable:
 					bItem = col.attr.split(".")[0]					
 					if aItem.key == bItem:
 						pprint(vars(aItem))
