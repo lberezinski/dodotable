@@ -365,7 +365,7 @@ class Table(Schema, Queryable, Renderable):
             for j, col in enumerate(self.columns):
                 pprint(vars(col))
                 for aItem, aValue in aTable.items():
-                    for cItem, cValue in col.items():
+                    for cItem in col:
                         print(aItem,cItem)
 
                 _row.append(
