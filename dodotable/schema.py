@@ -368,7 +368,7 @@ class Table(Schema, Queryable, Renderable):
                     col.__cell__(col=j, row=i, data=row,
                                  attribute_name=col.attr)
                 )
-                pprint(default)
+                pprint(_row)
             self.rows.append(_row)
         self.pager = Pager(limit=limit, offset=offset,
                            count=self.count)
