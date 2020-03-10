@@ -369,7 +369,7 @@ class Table(Schema, Queryable, Renderable):
                     col.__cell__(col=j, row=i, data=row,
                                  attribute_name=col.attr)
                 )
-                print("--- {}".format(row))
+                print("--- {}".format(vars(row)))
                 for cell2 in _row:
                     pprint(vars(cell2))
                 print()
