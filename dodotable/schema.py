@@ -348,7 +348,7 @@ class Table(Schema, Queryable, Renderable):
         # print ("query {}".format(vars(self.query)))
         q = self.query.offset(offset).limit(limit)
         for i, row in enumerate(q):
-            pprint(vars(row))
+            pprint(vars(row._sa_instance_state.class_))
 
             # t2 = row._sa_instance_state.class_.__table__
             # pprint (vars(t2))
