@@ -17,6 +17,7 @@ from sqlalchemy.orm import Query
 from .environment.flask import FlaskEnvironment
 from .util import render, string_literal, _get_data
 
+from pprint import pprint
 
 __all__ = (
     'Cell', 'Column', 'LinkedColumn', 'ObjectColumn', 'ENVIRONMENT',
@@ -348,8 +349,9 @@ class Table(Schema, Queryable, Renderable):
         q = self.query.offset(offset).limit(limit)
         for i, row in enumerate(q):
             # print ("ROW {}".format(vars(row)))
-            
+
             print ("ROW SA {}".format(vars(row._sa_instance_state.class_)))
+            pprint(row._sa_instance_state.class_.__table__)
             _row = Row()
             for j, col in enumerate(self.columns):
                 _row.append(
