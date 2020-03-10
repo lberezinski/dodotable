@@ -344,7 +344,7 @@ class Table(Schema, Queryable, Renderable):
 
     def select(self, offset=Pager.DEFAULT_OFFSET, limit=Pager.DEFAULT_LIMIT):
         self.rows = []
-        print ("query {}".format(vars(query)))
+        print ("query {}".format(vars(self.query)))
         q = self.query.offset(offset).limit(limit)
         for i, row in enumerate(q):
             print ("ROW {}".format(vars(row)))
