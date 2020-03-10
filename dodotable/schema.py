@@ -367,7 +367,7 @@ class Table(Schema, Queryable, Renderable):
 				for aItem, aValue in aTable.items():
 					bItem = col.attr.split(".")[0]					
 					if aItem == bItem:
-						pprint(vars(aItem))
+						pprint(vars(aValue))
 
 				_row.append(
 					col.__cell__(col=j, row=i, data=row,
