@@ -145,7 +145,7 @@ class Column(Schema, Renderable):
 
     def __init__(self, label, attr, order_by=(), filters=None,
                  _repr=string_literal, sortable=True, visible=True,
-                 classes=()):
+                 editable=False,classes=()):
         from .condition import Order
         if filters is None:
             filters = []
@@ -156,6 +156,7 @@ class Column(Schema, Renderable):
         self._repr = _repr
         self.sortable = sortable
         self.visible = visible
+        self.editable = editable
         self.classes = classes
 
     def add_filter(self, filter):
