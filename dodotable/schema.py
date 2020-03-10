@@ -361,6 +361,7 @@ class Table(Schema, Queryable, Renderable):
                 print (c2.primary_key)
                 print (c2.default)
            
+            print()
             _row = Row()
             for j, col in enumerate(self.columns):
                 pprint(vars(col))
@@ -370,7 +371,11 @@ class Table(Schema, Queryable, Renderable):
                 )
                 for cell2 in _row:
                     pprint(vars(cell2))
+                print()
+
             self.rows.append(_row)
+            pprint(vars(rows))
+            print("-------------------------------------------------------")
         self.pager = Pager(limit=limit, offset=offset,
                            count=self.count)
         self.pager.environment = self.environment
