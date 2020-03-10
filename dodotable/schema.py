@@ -371,13 +371,13 @@ class Table(Schema, Queryable, Renderable):
                 # print("--- {}".format(vars(row)))
                 # print(_get_data(row, col.attr, None))
                 
-                for cell2 in _row:
-                    pprint(vars(cell2))
-                print()
+                # for cell2 in _row:
+                #     pprint(vars(cell2))
+                # print()
 
             self.rows.append(_row)
    
-            print("-------------------------------------------------------")
+            # print("-------------------------------------------------------")
         self.pager = Pager(limit=limit, offset=offset,
                            count=self.count)
         self.pager.environment = self.environment

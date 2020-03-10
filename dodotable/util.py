@@ -73,7 +73,7 @@ def _get_data(data, attribute_name, default):
     name_chain = attribute_name.split('.')
 
     def __data__(_data, name_chain):
-        print ("_data {} | name_chain {}".format(_data, name_chain))
+        # print ("_data {} | name_chain {}".format(_data, name_chain))
         if len(name_chain) > 0:
             try:
                 return __data__(getattr(_data, name_chain[0]),
