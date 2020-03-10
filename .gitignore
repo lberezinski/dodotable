@@ -13,3 +13,6 @@ docs/_build
 .idea
 .tox
 *.mo
+
+build
+dodotable.egg-info
