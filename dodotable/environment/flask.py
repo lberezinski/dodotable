@@ -19,43 +19,43 @@ one of environment class, and use it in your table.
 
 .. code-block:: python
 
-   # yourapplication/dodotable.py
-   from dodotable.schema import Column as SchemaColumn, Table as SchemaTable
-   from dodotable.environment.flask import FlaskEnvironment
-   from jinja2 import PackageLoader
+	 # yourapplication/dodotable.py
+	 from dodotable.schema import Column as SchemaColumn, Table as SchemaTable
+	 from dodotable.environment.flask import FlaskEnvironment
+	 from jinja2 import PackageLoader
 
-   class CustomEnvironment(FlaskEnvironment):
+	 class CustomEnvironment(FlaskEnvironment):
 
-       @property
-       def template_loader(self):
-           return PackageLoader('yourapplication', 'templates')
-
-
-   class Column(SchemaColumn):
-
-       environment = CustomEnvironment()
+			 @property
+			 def template_loader(self):
+					 return PackageLoader('yourapplication', 'templates')
 
 
-   class Table(SchemaTable):
+	 class Column(SchemaColumn):
 
-       environment = CustomEnvironment()
+			 environment = CustomEnvironment()
+
+
+	 class Table(SchemaTable):
+
+			 environment = CustomEnvironment()
 
 .. code-block:: python
 
-   #yourapplication/app.py
-   from flask import Flask, render_template
+	 #yourapplication/app.py
+	 from flask import Flask, render_template
 
-   from .dodotable import Table, Column
+	 from .dodotable import Table, Column
 
-   app = Flask(__name__)
+	 app = Flask(__name__)
 
 
-   @app.route('/', methods=['GET'])
-   def index():
-       table = Table(columns=[
-           Column(...)
-       ], ...)
-       return render_template('index.html', table=table.select(0, 10))
+	 @app.route('/', methods=['GET'])
+	 def index():
+			 table = Table(columns=[
+					 Column(...)
+			 ], ...)
+			 return render_template('index.html', table=table.select(0, 10))
 
 
 .. _Jinja2: http://jinja.pocoo.org/
@@ -73,45 +73,45 @@ __all__ = 'FlaskEnvironment', 'default_locale_selector'
 
 
 class FlaskEnvironment(Environment):
-    """Build table with :mod:`flask`"""
+		"""Build table with :mod:`flask`"""
 
-    def __init__(self, locale_selector=None, *args, **kwargs):
-        if locale_selector is None:
-            locale_selector = default_locale_selector
-        super(FlaskEnvironment, self).__init__(
-            *args,
-            locale_selector=locale_selector,
-            **kwargs
-        )
+		def __init__(self, locale_selector=None, *args, **kwargs):
+				if locale_selector is None:
+						locale_selector = default_locale_selector
+				super(FlaskEnvironment, self).__init__(
+						*args,
+						locale_selector=locale_selector,
+						**kwargs
+				)
 
-    def build_url(self, **kwargs):
-        arg = request.args.copy()
-        view_args = request.view_args
-        arg.update(view_args)
-        for attr in kwargs.keys():
-            if attr in arg:
-                arg.pop(attr)
-        arg.update(kwargs.items())
-        rule = request.url_rule
-        result = rule.build({k: v for k, v in arg.items()})
-        return result[1]
+		def build_url(self, **kwargs):
+				arg = request.args.copy()
+				view_args = request.view_args
+				arg.update(view_args)
+				for attr in kwargs.keys():
+						if attr in arg:
+								arg.pop(attr)
+				arg.update(kwargs.items())
+				rule = request.url_rule
+				result = rule.build({k: v for k, v in arg.items()})
+				return result[1]
 
-    def get_session(self):
-        ctx = request._get_current_object()
-        try:
-            session = ctx._current_session
-        except AttributeError:
-            return None
-        else:
-            return session
+		def get_session(self):
+				ctx = request._get_current_object()
+				try:
+						session = ctx._current_session
+				except AttributeError:
+						return None
+				else:
+						return session
 
 
 def default_locale_selector():
-    # FIXME
-    # Commonly defined in all Flask services that currently use dodo tables
-    # I don't know what locale means is, so temporarily
-    # use accept_language.
-    try:
-        return request.accept_languages.best_match(['ko', 'jp', 'en'])
-    except Exception:
-        return 'ko'
+		# FIXME
+		# Commonly defined in all Flask services that currently use dodo tables
+		# I don't know what locale means is, so temporarily
+		# use accept_language.
+		try:
+				return request.accept_languages.best_match(['ko', 'jp', 'en'])
+		except Exception:
+				return 'ko'
