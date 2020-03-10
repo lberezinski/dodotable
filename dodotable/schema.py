@@ -346,10 +346,9 @@ class Table(Schema, Queryable, Renderable):
         self.rows = []
         q = self.query.offset(offset).limit(limit)
         for i, row in enumerate(q):
-            print ("ROW {}".format(row))
+            print ("ROW {}".format(vars(row)))
             _row = Row()
             for j, col in enumerate(self.columns):
-                print ("COL {}".format(col))
                 _row.append(
                     col.__cell__(col=j, row=i, data=row,
                                  attribute_name=col.attr)
