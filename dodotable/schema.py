@@ -354,7 +354,7 @@ class Table(Schema, Queryable, Renderable):
             
             
             for c2 in t2.columns:
-                pprint (c2) 
+                pprint (vars(c2) )
            
             _row = Row()
             for j, col in enumerate(self.columns):
