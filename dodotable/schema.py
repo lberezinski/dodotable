@@ -350,7 +350,7 @@ class Table(Schema, Queryable, Renderable):
         for i, row in enumerate(q):
             pprint(vars(row._sa_instance_state.class_))
 
-            aTable = row._sa_instance_state.class_.__table__
+            aTable = row._sa_instance_state.class_._sa_class_manager
             # pprint (vars(t2))
             # print()
             
