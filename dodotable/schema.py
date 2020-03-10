@@ -44,11 +44,11 @@ class Schema(object):
 
 
 class Renderable(object):
-    """jinja에서 바로 렌더링되는 클래스의 상위 클래스
+    """jinja The parent class of the class that is rendered directly from
 
-    jinja에서는 ``__html__`` 를 호출하여 렌더링을 하므로
-    :class:`~Renderable` 을 상속받아 :meth:`~Renderable.__html__` 을
-    구현하는 경우 바로 렌더링 할 수 있습니다.
+    jinja In `` __html__ '' to render
+    :class:`~Renderable` Inheriting: meth: `~ Renderable .__ html__`
+    If you implement, you can render right away.
 
     .. code-block:: python
 
@@ -64,36 +64,36 @@ class Renderable(object):
     """
 
     def __html__(self):
-        """:mod:`jinja` 내부 호출용 함수
+        """:mod:`jinja` Function for internal calls
 
         .. note::
 
-           요즘은 :func:`__html__` 을 구현하는게 HTML 뱉는 객체의 de facto 라고하더군요.
+           Nowadays, implementing: func: `__html__` is called de facto of an HTML spit object.
 
         """
         raise NotImplementedError('__html__ not implemented yet.')
 
 
 class Queryable(object):
-    """:class:`~sqlalchemy.orm.query.Query` 로 변환 가능한 객체
+    """:class:`~sqlalchemy.orm.query.Query` Convertible to
 
-    쿼리를 내뱉는 모든 필더들은 :class:`~Queryable` 을 상속받고
-    :meth:`~Queryable.__query__` 를 구현하여 sqlalchemy 쿼리로 사용할 수 있도록
-    변환해야합니다.
+    All fields that spawn queries inherit from: class: `~ Queryable`
+    Implement: meth: `~ Queryable .__ query__` to use as a sqlalchemy query
+    You need to convert
 
     """
 
     def __query__(self):
-        """모든 :class:`~dodotable.Queryable` 객체가 구현해야하는 메소드."""
+        """The method that every: class: `~ dodotable.Queryable` object must implement."""
         raise NotImplementedError('__query__ not implemented yet.')
 
 
 class Cell(Schema, Renderable):
-    """테이블의 셀을 나타내는 클래스
+    """A class representing a table cell
 
-    :param int col: column 위치
-    :param int row: row 위치
-    :param data: 셀에 채워질 데이터
+    : param int col: column position
+    : param int row: row position
+    : param data: the data to be filled in the cell
     """
 
     def __init__(self, col, row, data, _repr=string_literal, classes=()):
@@ -108,12 +108,12 @@ class Cell(Schema, Renderable):
 
 
 class LinkedCell(Cell):
-    """컨텐츠에 링크가 걸린 Cell
+    """Cell Linked to Content
 
-    :param int col: column 위치
-    :param int row: row 위치
-    :param data: 셀에 채워질 데이터
-    :param endpoint: 데이터를 누르면 이동할 url
+    : param int col: column position
+    : param int row: row position
+    : param data: the data to be filled in the cell
+    : param endpoint: The url to go to when you press data
 
     """
 
@@ -128,18 +128,18 @@ class LinkedCell(Cell):
 
 
 class Column(Schema, Renderable):
-    """테이블의 열을 나타내는 클래스
+    """A class representing a table column
 
-    :param str label: 컬럼 레이블
-    :param str attr: 가져올 attribute 이름
-    :param list order_by: 정렬 기준
-    :param list filters: 정렬 기준
-    :param function _repr: 보여질 형식
-    :param bool sortable: 정렬 가능 여부
-    :param bool visible: 테이블에 해당 칼럼이 보일지 말지의 여부.
-                         해당 값이 False여도
-                         :class:`~dodotable.condition.IlikeSet`의 필터에는
-                         보이므로 검색에는 사용할 수 있습니다.
+    : param str label: column label
+    : param str attr: Attribute name to import
+    : param list order_by: Sort by
+    : param list filters: Sort by
+    : param function _repr: The format to be shown
+    param bool sortable
+    : param bool visible: Whether the column is visible in the table.
+                         Even if the value is False
+                         : class: `~ dodotable.condition.IlikeSet`
+                         As it is seen, we can use for search.
 
     """
 
@@ -163,7 +163,7 @@ class Column(Schema, Renderable):
         self.filters.append(filter)
 
     def __cell__(self, col, row, data, attribute_name, default=None):
-        """해당 열의 데이터를 :class:`~dodotable.Cell`로 변환합니다.
+        """Convert the column's data to: class: `~ dodotable.Cell`.
 
         :param col:
         :param row:
@@ -182,12 +182,12 @@ class Column(Schema, Renderable):
 
 
 class LinkedColumn(Column):
-    """링크가 걸려야 하는 열 나타내는 클래스
+    """The class representing the column to which the link should go
 
-    :param str label: 컬럼 레이블
-    :param str attr: 가져올 attribute 이름
-    :param str or function endpoint: 걸릴 링크 형식
-    :param list order_by: 정렬 기준
+    : param str label: column label
+    : param str attr: Attribute name to import
+    param str or function endpoint
+    : param list order_by: Sort by
 
     """
 
@@ -214,7 +214,7 @@ class ObjectColumn(Column):
 
 
 class HiddenColumn(Column):
-    """보이지 않는 열"""
+    """Invisible heat"""
 
     def __init__(self, *args, **kwargs):
         super(HiddenColumn, self).__init__(*args, **kwargs)
@@ -222,7 +222,7 @@ class HiddenColumn(Column):
 
 
 class Row(Schema, MutableSequence, Renderable):
-    """테이블에 행을 나타내는 클래스 """
+    """A class representing a row in a table """
 
     def __init__(self):
         self._row = []
@@ -309,7 +309,7 @@ class Pager(Schema, Renderable):
 
 
 class Table(Schema, Queryable, Renderable):
-    """데이터를 나타내는 테이블의 틀
+    """The frame of the table representing the data
 
     :param cls:
     :param label:
@@ -346,8 +346,10 @@ class Table(Schema, Queryable, Renderable):
         self.rows = []
         q = self.query.offset(offset).limit(limit)
         for i, row in enumerate(q):
+            print ("ROW {}".format(row))
             _row = Row()
             for j, col in enumerate(self.columns):
+                print ("COL {}".format(col))
                 _row.append(
                     col.__cell__(col=j, row=i, data=row,
                                  attribute_name=col.attr)
@@ -363,7 +365,7 @@ class Table(Schema, Queryable, Renderable):
 
     @property
     def _order_queries(self):
-        """쿼리의 정렬 조건을 가져옵니다."""
+        """Get the sort criteria of the query."""
         from .condition import Order
         order = []
         for column in self.columns:
@@ -399,7 +401,7 @@ class Table(Schema, Queryable, Renderable):
 
     @property
     def query(self):
-        """쿼리를 만듭니다.
+        """Create a query.
 
         :return:
         """

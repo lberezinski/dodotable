@@ -16,8 +16,8 @@ class _Helper(Schema):
 
 
 class Limit(_Helper, Renderable, Queryable):
-    """querystring 중에 ``limit`` 를 조작해서 100개보기 같은 기능을
-    제공합니다.
+    """Operate `` limit '' in querystring to get 100 functions
+    provide.
 
     """
 
@@ -36,8 +36,8 @@ class Limit(_Helper, Renderable, Queryable):
 
 
 class Category(_Helper, SelectFilter):
-    """``select`` 태그로 렌더링되는 필터가 아닌
-    카테고리 형식으로 렌더링되는 필터를 제공합니다.
+    """``select`` Not a filter that is rendered as a tag
+    Provides a filter that is rendered in category format..
 
     """
 

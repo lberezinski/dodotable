@@ -18,14 +18,14 @@ __all__ = (
 )
 
 
-#: (:class:`_sre.SRE_Pattern`) 첫번째 대문자를 찾습니다.
+#: (:class:`_sre.SRE_Pattern`) Find the first capital letter..
 first_cap_re = re.compile('(.)([A-Z][a-z]+)')
-#: (:class:`_sre.SRE_Pattern`) 단어 중에 첫번째가아닌 모든 대문자를 찾습니다.
+#: (:class:`_sre.SRE_Pattern`) Find all capital letters that are not first in a word.
 all_cap_re = re.compile('([a-z0-9])([A-Z])')
 
 
 def camel_to_underscore(name):
-    """CamelCase로 주어진 ``name`` 을 underscore_with_lower_case로 변환합니다
+    """CamelCase Given by ``name`` of underscore_with_lower_case Convert to
 
     .. code-block:: python
 
@@ -42,7 +42,7 @@ def camel_to_underscore(name):
 
 
 def render(template_name, extra_environments=None, **kwargs):
-    """주어진 템플릿을 jinja로 렌더링합니다
+    """Render the given template with jinja
 
     :param template_name:
     :return:

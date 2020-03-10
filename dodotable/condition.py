@@ -18,7 +18,7 @@ class _Filter(Schema):
 
 
 class SelectFilter(_Filter, Queryable, Renderable):
-    """여러 옵션중 하나를 선택하는 필터를 만듭니다.
+    """Create a filter that selects one of several options.
 
     :param cls:
     :param attribute_name:
@@ -76,7 +76,7 @@ class NullSelectableSelectFilter(SelectFilter):
 
 
 def create_search_name(name):
-    """HTML form의 name을 생성합니다.
+    """Create a name for the HTML form.
 
     :param cls:
     :return:
@@ -87,19 +87,19 @@ def create_search_name(name):
 
 
 class Ilike(Queryable):
-    """SQL ILIKE 연산을 담당하는 필터
+    """Filter responsible for the SQL ILIKE operation
 
-    :class:`~Column` 에 포함 가능한 필터로, 단어를 받아서 그 단어에 대한 조건을
-    생성합니다.
+    A filter that can be included in: class: `~ Column` that takes a word and sets the conditions for that word.
+    To generate.
 
-    .. code-block:: python
+    .. code-block :: python
 
-       >>> print(Ilike(Music, 'name', request_args))
-       lower(music.name) LIKE lower(:name_1)
+       >>> print (Ilike (Music, 'name', request_args))
+       lower (music.name) LIKE lower (: name_1)
 
-    :param cls:
-    :param attribute_name:
-    :param request_args:
+    param cls:
+    : param attribute_name:
+    : param request_args:
 
     """
 
@@ -184,28 +184,28 @@ class EqualAlias(IlikeAlias):
 
 
 class IlikeSet(_Filter, Queryable, Renderable):
-    """모든 ILIKE 관련 연산을 묶습니다.
+    """Group all ILIKE related operations.
 
-    :class:`~Table` 에 포함 가능한 필터로, 해당 테이블에 있는 ILIKE 조건을 묶어서
-    OR 연산으로 묶습니다.
+    A filter that can be included in: class: `~ Table` that combines the ILIKE conditions in that table
+    Enclose it in an OR operation.
 
-    .. code-block:: python
+    .. code-block :: python
 
-       >>> table = Table(AdminRole, columns=[...])
-       >>> table.add_filter(IlikeSet(table, request_args))
-       >>> print(table.query)
-       SELECT ...
-       FROM admin_role AS admin_role_1
-       ...
-       WHERE lower(name) LIKE lower(:name_1)
-         OR lower(authority) LIKE lower(:authority_1)
-       ...
+       >>> table = Table (AdminRole, columns = [...])
+       >>> table.add_filter (IlikeSet (table, request_args))
+       >>> print (table.query)
+       SELECT ...
+       FROM admin_role AS admin_role_1
+       ...
+       WHERE lower (name) LIKE lower (: name_1)
+         OR lower (authority) LIKE lower (: authority_1)
+       ...
 
-    :param table:
-    :type table: :class:`dodotable.Table`
-    :param request_args:
-    :type request_args: :class:`~collections.abc.Mapping`
-    :param identifier:
+    param table:
+    : type table:: class: `dodotable.Table`
+    : param request_args:
+    : type request_args:: class: `~ collections.abc.Mapping`
+    : param identifier:
 
     """
 
@@ -232,17 +232,17 @@ class IlikeSet(_Filter, Queryable, Renderable):
 
 
 class Order(Queryable):
-    """정렬 조건을 내보냅니다.
+    """Export sort criteria.
 
     :param cls:
     :param attribute_name:
     :param order:
     """
 
-    #: 내림차순
+    #: Descending order
     DESCENDANT = 'desc'
 
-    #: 오름차순
+    #: Ascending order
     ASCENDANT = 'asc'
 
     def __init__(self, cls, attribute_name, order=None):

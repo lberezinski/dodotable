@@ -16,7 +16,7 @@
 
 <script type="text/javascript">
   $("select[name={{ filter.arg_type_name }}]").change(function() {
-    {# FIXME: 사실은 자바스크립트에서 querystring을 더하거나, 바꾸는게 옳아보임. #}
+    {# FIXME: Actually it seems correct to add or change querystring in JavaScript. #}
     location.href = $('option:selected', this).data('url');
   });
 </script>
