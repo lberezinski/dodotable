@@ -348,20 +348,19 @@ class Table(Schema, Queryable, Renderable):
         # print ("query {}".format(vars(self.query)))
         q = self.query.offset(offset).limit(limit)
         for i, row in enumerate(q):
-            # pprint(vars(row))
+            pprint(vars(row))
 
-            t2 = row._sa_instance_state.class_.__table__
-            pprint (vars(t2))
-            print()
+            # t2 = row._sa_instance_state.class_.__table__
+            # pprint (vars(t2))
+            # print()
             
-            for c2 in t2.columns:
-                # pprint (vars(c2) )
-                print (c2.key)
-                print (c2.nullable)
-                print (c2.primary_key)
-                print (c2.default)
+            # for c2 in t2.columns:
+            #     # pprint (vars(c2) )
+            #     print (c2.key)
+            #     print (c2.nullable)
+            #     print (c2.primary_key)
+            #     print (c2.default)
            
-            print()
             _row = Row()
             for j, col in enumerate(self.columns):
                 pprint(vars(col))
@@ -369,14 +368,15 @@ class Table(Schema, Queryable, Renderable):
                     col.__cell__(col=j, row=i, data=row,
                                  attribute_name=col.attr)
                 )
-                print(_get_data(row, col.attr, None))
-                print("--- {}".format(vars(row)))
+                # print("--- {}".format(vars(row)))
+                # print(_get_data(row, col.attr, None))
+                
                 for cell2 in _row:
                     pprint(vars(cell2))
                 print()
 
             self.rows.append(_row)
-            pprint(self.rows)
+   
             print("-------------------------------------------------------")
         self.pager = Pager(limit=limit, offset=offset,
                            count=self.count)
