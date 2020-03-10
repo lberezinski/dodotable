@@ -349,11 +349,12 @@ class Table(Schema, Queryable, Renderable):
         q = self.query.offset(offset).limit(limit)
         for i, row in enumerate(q):
             # print ("ROW {}".format(vars(row)))
-
-            pprint (vars(row._sa_instance_state.class_.__table__))
-            pprint (dir(row._sa_instance_state.class_.__table__))
+            t2 = row._sa_instance_state.class_.__table__
+            pprint (vars(t2))
             
             
+            for c2 in t2.columns:
+                pprint (c2) 
            
             _row = Row()
             for j, col in enumerate(self.columns):
