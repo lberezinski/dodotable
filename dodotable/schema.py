@@ -350,8 +350,11 @@ class Table(Schema, Queryable, Renderable):
         for i, row in enumerate(q):
             # print ("ROW {}".format(vars(row)))
 
-            print ("ROW SA {}".format(vars(row._sa_instance_state.class_)))
+            pprint ("ROW SA {}".format(vars(row._sa_instance_state.class_)))
+            print(type(row._sa_instance_state.class_.__table__))
             pprint(row._sa_instance_state.class_.__table__)
+            for tuple_item in row._sa_instance_state.class_.__table__:
+                print(tuple_item)
             _row = Row()
             for j, col in enumerate(self.columns):
                 _row.append(
