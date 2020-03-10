@@ -350,7 +350,7 @@ class Table(Schema, Queryable, Renderable):
         for i, row in enumerate(q):
             pprint(vars(row._sa_instance_state.class_))
 
-            # t2 = row._sa_instance_state.class_.__table__
+            aTable = row._sa_instance_state.class_.__table__
             # pprint (vars(t2))
             # print()
             
@@ -364,6 +364,9 @@ class Table(Schema, Queryable, Renderable):
             _row = Row()
             for j, col in enumerate(self.columns):
                 pprint(vars(col))
+                for key, value in aTable.columns.items():
+                    print(key)
+                    
                 _row.append(
                     col.__cell__(col=j, row=i, data=row,
                                  attribute_name=col.attr)
