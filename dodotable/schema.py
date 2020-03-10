@@ -374,7 +374,7 @@ class Table(Schema, Queryable, Renderable):
                 print()
 
             self.rows.append(_row)
-            pprint(vars(rows))
+            pprint(vars(self.rows))
             print("-------------------------------------------------------")
         self.pager = Pager(limit=limit, offset=offset,
                            count=self.count)
