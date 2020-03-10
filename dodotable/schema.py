@@ -364,12 +364,10 @@ class Table(Schema, Queryable, Renderable):
 			_row = Row()
 			for j, col in enumerate(self.columns):
 
-				pprint(dir(col))
 				for aItem, aValue in aTable.items():
-					bItem = col.attr.split(".")
-					print(aItem,col.attr,bItem)
-					if aItem == col.attr:
-						pass
+					bItem = col.attr.split(".")[0]					
+					if aItem == bItem:
+						pprint(vars(aItem))
 
 				_row.append(
 					col.__cell__(col=j, row=i, data=row,
