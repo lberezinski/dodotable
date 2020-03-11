@@ -356,17 +356,17 @@ class Table(Schema, Queryable, Renderable):
 			pprint (dir(aTable))
 			# print()
 			
-			for c2 in aTable.columns:
-			    # pprint (vars(c2) )
-			    print (c2.key)
-			    print (c2.nullable)
-			    print (c2.primary_key)
-			    print (c2.default)
+			# for c2 in aTable.columns:
+			#     # pprint (vars(c2) )
+			#     print (c2.key)
+			#     print (c2.nullable)
+			#     print (c2.primary_key)
+			#     print (c2.default)
 		   
 			_row = Row()
 			for j, col in enumerate(self.columns):
 
-				for aItem in aTable:
+				for aItem in aTable.columns:
 					bItem = col.attr.split(".")[0]					
 					if aItem.key == bItem:
 						pprint(vars(aItem))
