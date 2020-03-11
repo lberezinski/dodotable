@@ -352,7 +352,8 @@ class Table(Schema, Queryable, Renderable):
 
 			# aTable = row._sa_instance_state.class_._sa_class_manager
 			aTable = row._sa_instance_state.class_.__table__
-			# pprint (vars(t2))
+			pprint (vars(aTable))
+			pprint (dir(aTable))
 			# print()
 			
 			# for c2 in t2.columns:
