@@ -371,9 +371,13 @@ class Table(Schema, Queryable, Renderable):
 					# print (" {} = {} ".format(aItem.key, bItem))			
 					if aItem.key == bItem:
 						print (aItem.key)
-					    print (aItem.nullable)
-					    print (aItem.primary_key)
-					    print (aItem.default)
+						print (aItem.nullable)
+						print (aItem.primary_key)
+						print (aItem.default)
+						
+						col['nullable'] = nullable
+						col['primary_key'] = primary_key
+						col['default'] = default
 
 				_row.append(
 					col.__cell__(col=j, row=i, data=row,
