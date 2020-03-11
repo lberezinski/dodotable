@@ -356,12 +356,12 @@ class Table(Schema, Queryable, Renderable):
 			pprint (dir(aTable))
 			# print()
 			
-			# for c2 in t2.columns:
-			#     # pprint (vars(c2) )
-			#     print (c2.key)
-			#     print (c2.nullable)
-			#     print (c2.primary_key)
-			#     print (c2.default)
+			for c2 in aTable.columns:
+			    # pprint (vars(c2) )
+			    print (c2.key)
+			    print (c2.nullable)
+			    print (c2.primary_key)
+			    print (c2.default)
 		   
 			_row = Row()
 			for j, col in enumerate(self.columns):
