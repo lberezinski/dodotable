@@ -375,10 +375,13 @@ class Table(Schema, Queryable, Renderable):
 						print (aItem.nullable)
 						print (aItem.primary_key)
 						print (aItem.default)
+						print (col)
+						pprint (vars(col))
+						pprint (dir(col))
 						
-						col.nullable = nullable
-						col.primary_key = primary_key
-						col['default'] = default
+						# col.nullable = nullable
+						# col.primary_key = primary_key
+						# col['default'] = default
 
 				_row.append(
 					col.__cell__(col=j, row=i, data=row,
