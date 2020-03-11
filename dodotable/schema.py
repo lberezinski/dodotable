@@ -146,7 +146,7 @@ class Column(Schema, Renderable):
 
 	def __init__(self, label, attr, order_by=(), filters=None,
 				 _repr=string_literal, sortable=True, visible=True,
-				 editable=False,classes=()):
+				 editable=False,nullable= None ,classes=()):
 		from .condition import Order
 		if filters is None:
 			filters = []
@@ -159,6 +159,7 @@ class Column(Schema, Renderable):
 		self.visible = visible
 		self.editable = editable
 		self.classes = classes
+		self.nullable = nullable
 
 	def add_filter(self, filter):
 		self.filters.append(filter)
@@ -375,8 +376,8 @@ class Table(Schema, Queryable, Renderable):
 						print (aItem.primary_key)
 						print (aItem.default)
 						
-						col['nullable'] = nullable
-						col['primary_key'] = primary_key
+						col.nullable = nullable
+						col.primary_key = primary_key
 						col['default'] = default
 
 				_row.append(
