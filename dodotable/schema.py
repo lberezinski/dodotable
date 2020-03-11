@@ -348,12 +348,12 @@ class Table(Schema, Queryable, Renderable):
 		# print ("query {}".format(vars(self.query)))
 		q = self.query.offset(offset).limit(limit)
 		for i, row in enumerate(q):
-			pprint(vars(row._sa_instance_state.class_))
+			# pprint(vars(row._sa_instance_state.class_))
 
 			# aTable = row._sa_instance_state.class_._sa_class_manager
 			aTable = row._sa_instance_state.class_.__table__
-			pprint (vars(aTable))
-			pprint (dir(aTable))
+			# pprint (vars(aTable))
+			# pprint (dir(aTable))
 			# print()
 			
 			# for c2 in aTable.columns:
@@ -367,7 +367,8 @@ class Table(Schema, Queryable, Renderable):
 			for j, col in enumerate(self.columns):
 
 				for aItem in aTable.columns:
-					bItem = col.attr.split(".")[0]					
+					bItem = col.attr.split(".")[0]		
+					print (" {} = {} ".format(aItem.key, bItem))			
 					if aItem.key == bItem:
 						pprint(vars(aItem))
 
