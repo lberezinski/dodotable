@@ -370,14 +370,14 @@ class Table(Schema, Queryable, Renderable):
 				for aItem in aTable.columns:
 					bItem = col.attr.split(".")[0]		
 					# print (" {} = {} ".format(aItem.key, bItem))			
-					if aItem.key == bItem:
-						print (aItem.key)
-						print (aItem.nullable)
-						print (aItem.primary_key)
-						print (aItem.default)
-						print (col)
-						pprint (vars(col))
-						pprint (dir(col))
+					# if aItem.key == bItem:
+					# 	print (aItem.key)
+					# 	print (aItem.nullable)
+					# 	print (aItem.primary_key)
+					# 	print (aItem.default)
+					# 	print (col)
+					# 	pprint (vars(col))
+					# 	pprint (dir(col))
 						
 						# col.nullable = nullable
 						# col.primary_key = primary_key
